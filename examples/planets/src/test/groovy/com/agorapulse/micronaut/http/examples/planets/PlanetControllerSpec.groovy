@@ -6,7 +6,14 @@ import com.agorapulse.gru.Gru
 import com.agorapulse.gru.agp.ApiGatewayProxy
 import com.agorapulse.micronaut.agp.ApiGatewayProxyHandler
 import io.micronaut.context.ApplicationContext
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.MutableHttpResponse
+import io.micronaut.http.annotation.Filter
+import io.micronaut.http.filter.HttpServerFilter
+import io.micronaut.http.filter.ServerFilterChain
+import io.reactivex.Flowable
 import org.junit.Rule
+import org.reactivestreams.Publisher
 import spock.lang.Specification
 
 class PlanetControllerSpec extends Specification {
@@ -86,9 +93,20 @@ class PlanetControllerSpec extends Specification {
                 expect {
                     status NO_CONTENT
                     json 'pluto.json'
+                    headers 'x-planet-filter': 'true'
                 }
             }
             dru.findAllByType(Planet).size() == 4
     }
 
+}
+
+@Filter('/planet/**') class PlanetFilter implements HttpServerFilter {
+
+    @Override
+    Publisher<MutableHttpResponse<?>> doFilter(HttpRequest<?> request, ServerFilterChain chain) {
+        Flowable.fromPublisher(chain.proceed(request)).map {
+            it.header('x-planet-filter', 'true')
+        }
+    }
 }

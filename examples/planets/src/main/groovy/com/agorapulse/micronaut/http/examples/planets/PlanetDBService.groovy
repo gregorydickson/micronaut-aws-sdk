@@ -7,11 +7,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.datamodeling.IDynamoDBMapper
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput
+import io.micronaut.context.annotation.Requires
 
 import javax.annotation.PostConstruct
 import javax.inject.Singleton
 
 @Singleton
+@Requires(notEnv = 'test')
 class PlanetDBService {
 
     AmazonDynamoDB amazonDynamoDBClient = new AmazonDynamoDBClient()
