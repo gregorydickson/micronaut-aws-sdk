@@ -29,12 +29,12 @@ import io.micronaut.context.env.Environment
  */
 @CompileStatic
 @EachProperty('aws.sns.topics')
-@Requires(classes = AmazonSNS, property =  'aws.sns.topics')
-class NamedSimpleQueueServiceConfiguration extends SimpleNotificationServiceConfiguration {
+@Requires(classes = AmazonSNS)
+class NamedSimpleNotificationServiceConfiguration extends SimpleNotificationServiceConfiguration {
 
     final String name
 
-    NamedSimpleQueueServiceConfiguration(@Parameter String name, Environment environment) {
+    NamedSimpleNotificationServiceConfiguration(@Parameter String name, Environment environment) {
         super('aws.sns.topics.' + name, environment)
         this.name = name
     }

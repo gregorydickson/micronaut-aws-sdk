@@ -28,7 +28,7 @@ import io.micronaut.context.annotation.Requires
  */
 @CompileStatic
 @EachProperty('aws.sqs.queues')
-@Requires(classes = AmazonSQS, property =  'aws.sqs.queues')
+@Requires(classes = AmazonSQS)
 class NamedSimpleQueueServiceConfiguration extends SimpleQueueServiceConfiguration {
 
     final String name
