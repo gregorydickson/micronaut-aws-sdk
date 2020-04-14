@@ -23,12 +23,9 @@ import io.micronaut.context.annotation.ConfigurationProperties
 import io.micronaut.context.annotation.Requires
 import io.micronaut.context.env.Environment
 
-import javax.inject.Named
-
 /**
  * Default simple queue service configuration.
  */
-@Named('default')
 @CompileStatic
 @ConfigurationProperties('aws.sns')
 @Requires(classes = AmazonSNS)

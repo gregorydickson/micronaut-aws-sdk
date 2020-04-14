@@ -23,13 +23,10 @@ import io.micronaut.context.annotation.ConfigurationProperties
 import io.micronaut.context.annotation.Requires
 import io.micronaut.context.annotation.Value
 
-import javax.inject.Named
-
 /**
  * Default configuration for Kinesis listener.
  */
 @CompileStatic
-@Named('default')
 @ConfigurationProperties('aws.kinesis.listener')
 @Requires(classes = KinesisClientLibConfiguration)
 @SuppressWarnings('NoWildcardImports')

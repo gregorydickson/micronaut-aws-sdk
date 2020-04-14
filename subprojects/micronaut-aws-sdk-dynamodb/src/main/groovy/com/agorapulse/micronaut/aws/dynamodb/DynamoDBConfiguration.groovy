@@ -23,12 +23,9 @@ import groovy.transform.CompileStatic
 import io.micronaut.context.annotation.ConfigurationProperties
 import io.micronaut.context.annotation.Requires
 
-import javax.inject.Named
-
 /**
  * Default simple storage service configuration.
  */
-@Named('default')
 @CompileStatic
 @ConfigurationProperties('aws.dynamodb')
 @Requires(classes = DynamoDB)
