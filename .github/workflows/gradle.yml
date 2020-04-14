@@ -36,7 +36,7 @@ jobs:
       with:
         arguments: check coveralls --stacktrace -PmicronautVersion=${{ strategy.micronaut }}
     - uses: eskatos/gradle-command-action@v1
-      if: !startsWith(strategy.micronaut, '1.3')
+      if: startsWith(strategy.micronaut, '1.3') != true
       with:
         arguments: check -PmicronautVersion=${{ strategy.micronaut }}
     - name: Show Reports
